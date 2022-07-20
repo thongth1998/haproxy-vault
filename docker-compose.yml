@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+ haproxy:
+  image: f6bc264a0e65
+  container_name: haproxy
+  restart: always
+  volumes:
+    - "haproxy_socket:/run/haproxy:rw"
+    - "/etc/localtime:/etc/localtime:ro"
+    - "/etc/haproxy/:/etc/haproxy:rw"
+  network_mode: "host"
+  cap_drop:
+    - NET_ADMIN
+  privileged: true
+volumes:
+        haproxy_socket:
+                external: true
