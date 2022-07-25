@@ -2,7 +2,7 @@ version: '2'
 
 services:
  haproxy:
-  image: f6bc264a0e65
+  image: thongth1998/haproxy-vault:latest
   container_name: haproxy
   restart: always
   volumes:
