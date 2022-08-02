@@ -10,6 +10,7 @@ RUN DEBIAN_FRONTEND=noninteractive TZ=Asia/Ho_Chi_Minh apt-get -y install tzdata
 RUN apt install tcpdump \
     traceroute  \
     net-tools \
+    ca-certificates \
     vim  -y
 
 RUN apt install haproxy -y
@@ -18,6 +19,8 @@ ADD entrypoint.sh /
 ADD haproxy/ /etc/haproxy/
 ADD haproxy_run.sh /etc/haproxy/
 
+
+RUN chown -R haproxy:haproxy /run/
 RUN chmod +x /etc/haproxy/haproxy_run.sh
 RUN chmod +x /entrypoint.sh
 
@@ -26,4 +29,3 @@ RUN chmod +x /entrypoint.sh
 RUN mkdir /run/haproxy
 
 ENTRYPOINT ["/entrypoint.sh"]
-
